@@ -30,7 +30,7 @@ Certifique-se de ter o **Python 3.10+** instalado em sua máquina.
 1. **Clone o repositório** (ou baixe os arquivos fonte):
    ```bash
    git clone https://github.com/seu-usuario/waste-classifier.git
-   cd waste-classifier
+   cd ReciclaBot
    ```
 
 2. **Crie e ative um ambiente virtual (recomendado):**
