@@ -1,0 +1,234 @@
+/* ══════════════════════════════════════════════════════
+   ReciclaBot — Shared Design System (Cyber / Eco-Tech)
+   Imported by: index.html, apresentacao/, webapp/
+   ══════════════════════════════════════════════════════ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap');
+
+/* ── CSS Custom Properties (Design Tokens) ── */
+:root {
+  --clr-bg:        #060b18;
+  --clr-bg-card:   rgba(15, 23, 42, 0.82);
+  --clr-border:    rgba(255, 255, 255, 0.07);
+  --clr-cyan:      #00c8ff;
+  --clr-violet:    #a78bfa;
+  --clr-green:     #34d399;
+  --clr-amber:     #fbbf24;
+  --clr-orange:    #fb923c;
+  --clr-red:       #f87171;
+  --clr-text:      #e2e8f0;
+  --clr-muted:     #94a3b8;
+  --clr-subtle:    #64748b;
+  --clr-faint:     #334155;
+
+  --radius-card:   20px;
+  --radius-sm:     12px;
+  --blur-card:     blur(14px);
+
+  --shadow-glow-cyan:   0 0 30px rgba(0,200,255,0.18), 0 0 60px rgba(0,200,255,0.06);
+  --shadow-card:        0 8px 40px rgba(0,0,0,0.4);
+
+  --font-body:     'Inter', sans-serif;
+  --font-display:  'Space Grotesk', sans-serif;
+}
+
+/* ── Global Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: radial-gradient(ellipse at 20% 10%, #0f172a 0%, var(--clr-bg) 60%, #0a0f1e 100%);
+  color: var(--clr-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Floating Emoji Background (shared) ── */
+#waste-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#waste-bg span {
+  position: absolute;
+  bottom: -12%;
+  display: block;
+  opacity: 0.10;
+  filter: blur(2px);
+  user-select: none;
+  animation-name: floatUp;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0)      rotate(var(--rs)); opacity: 0;    }
+  8%   { opacity: 0.10; }
+  50%  { transform: translateY(-55vh)  rotate(var(--re)); opacity: 0.10; }
+  92%  { opacity: 0.10; }
+  100% { transform: translateY(-115vh) rotate(var(--rs)); opacity: 0;    }
+}
+
+/* ── Page content sits above bg ── */
+.page-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Glassmorphism card ── */
+.glass-card {
+  background: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-card);
+  backdrop-filter: var(--blur-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Neon gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--clr-cyan) 0%, var(--clr-violet) 50%, var(--clr-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Primary CTA button ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--clr-cyan), var(--clr-violet));
+  color: var(--clr-bg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,200,255,0.28);
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  letter-spacing: 0.2px;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,200,255,0.40);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* ── Secondary outline button ── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--clr-muted);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  letter-spacing: 0.2px;
+}
+.btn-secondary:hover {
+  color: var(--clr-cyan);
+  border-color: rgba(0,200,255,0.4);
+  background: rgba(0,200,255,0.05);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, transparent);
+  margin: 2rem 0;
+}
+
+/* ── Status badge ── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.status-badge.loading { background: rgba(251,191,36,0.12); color: var(--clr-amber); border: 1px solid rgba(251,191,36,0.25); }
+.status-badge.ready   { background: rgba(52,211,153,0.12);  color: var(--clr-green); border: 1px solid rgba(52,211,153,0.25); }
+.status-badge.error   { background: rgba(248,113,113,0.12); color: var(--clr-red);   border: 1px solid rgba(248,113,113,0.25); }
+
+/* ── Section label ── */
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--clr-subtle);
+  margin-bottom: 0.8rem;
+}
+
+/* ── Keyframe: glow pulse (reusable) ── */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,200,255,0.10), 0 8px 40px rgba(0,0,0,0.35); }
+  50%       { box-shadow: 0 0 40px rgba(0,200,255,0.25), 0 8px 50px rgba(0,0,0,0.4); }
+}
+
+/* ── Keyframe: gradient shift for text ── */
+@keyframes gradShift {
+  0%   { filter: hue-rotate(0deg);  }
+  100% { filter: hue-rotate(35deg); }
+}
+
+/* ── Keyframe: slide up ── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Keyframe: fade in ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Keyframe: spin ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Keyframe: icon float ── */
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ── Keyframe: progress bar fill ── */
+@keyframes barFill {
+  from { width: 0; }
+}
+
+/* ── Keyframe: scanline ── */
+@keyframes scanline {
+  0%   { top: -8%; }
+  100% { top: 108%; }
+}
+
+/* ── Keyframe: icon bounce ── */
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0) scale(1);       }
+  40%       { transform: translateY(-8px) scale(1.12); }
+  70%       { transform: translateY(-3px) scale(1.05); }
+}

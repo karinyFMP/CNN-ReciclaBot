@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação — ReciclaBot CNN</title>
+  <meta name="description" content="Apresentação do projeto ReciclaBot: Transfer Learning com MobileNetV2, super dataset (TrashNet + Real World), métricas, tecnologias e demonstração.">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating emoji background -->
+  <div id="waste-bg" aria-hidden="true"></div>
+
+  <!-- ══ FIXED: Test Model button ══ -->
+  <a href="../webapp/index.html" class="fab-test" id="fab-test-model" aria-label="Testar o modelo">
+    <span class="fab-icon">🤖</span>
+    <span class="fab-label">Testar o Modelo</span>
+  </a>
+
+  <div class="page-wrap">
+
+    <!-- ══════════════ SECTION 1 — Hero ══════════════ -->
+    <section class="section hero-section" id="hero">
+      <div class="hero-inner">
+        <div class="hero-chip reveal">Trabalho Acadêmico · Deep Learning · Transfer Learning · 2025</div>
+        <h1 class="hero-title gradient-text reveal" style="--d:0.05s">
+          ♻️ ReciclaBot
+        </h1>
+        <p class="hero-sub reveal" style="--d:0.12s">
+          <strong>MobileNetV2</strong> com Transfer Learning treinado em super dataset
+          (TrashNet + Garbage Real World) para classificação automática de resíduos
+          — executado 100% no navegador, sem servidor, sem instalação.
+        </p>
+        <div class="hero-actions reveal" style="--d:0.2s">
+          <a href="#como-funciona" class="btn-primary">
+            Ver mais
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="../index.html" class="btn-secondary">⬅ Início</a>
+        </div>
+        <div class="hero-scroll-hint reveal" style="--d:0.3s" aria-hidden="true">
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ SECTION 2 — Como funciona ══════════════ -->
+    <section class="section" id="como-funciona">
+      <div class="section-inner">
+        <p class="section-label reveal">Arquitetura</p>
+        <h2 class="section-title reveal" style="--d:0.05s">Como funciona</h2>
+        <p class="section-desc reveal" style="--d:0.1s">
+          O pipeline une dois datasets públicos, aplica Transfer Learning com MobileNetV2
+          e converte o resultado para rodar no navegador via TensorFlow.js.
+        </p>
+
+        <div class="pipeline-steps">
+          <div class="pipeline-step glass-card reveal" style="--d:0.05s">
+            <div class="ps-num">01</div>
+            <div class="ps-icon step-1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ps-content">
+              <h3>Super Dataset</h3>
+              <p>Mesclagem de <strong>TrashNet</strong> e <strong>Garbage Real World</strong> (Kaggle) em 6 categorias. Imagens com fundos reais — mãos, rua, grama — aumentam a robustez.</p>
+            </div>
+          </div>
+
+          <div class="pipeline-arrow reveal" style="--d:0.08s" aria-hidden="true">→</div>
+
+          <div class="pipeline-step glass-card reveal" style="--d:0.12s">
+            <div class="ps-num">02</div>
+            <div class="ps-icon step-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ps-content">
+              <h3>Transfer Learning (MobileNetV2)</h3>
+              <p>Base pré-treinada no ImageNet (congelada) + camadas Dense próprias. Apenas 10 épocas no Google Colab GPU — mais rápido e mais preciso que treinar do zero.</p>
+            </div>
+          </div>
+
+          <div class="pipeline-arrow reveal" style="--d:0.16s" aria-hidden="true">→</div>
+
+          <div class="pipeline-step glass-card reveal" style="--d:0.2s">
+            <div class="ps-num">03</div>
+            <div class="ps-icon step-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="ps-content">
+              <h3>Conversão TF.js</h3>
+              <p>Modelo salvo como <code>.h5</code> e convertido com <code>tensorflowjs_converter</code>. Roda 100% no browser via WebGL — zero backend, zero servidor.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architecture detail card -->
+        <div class="arch-detail glass-card reveal" style="--d:0.25s; margin-top:2rem;">
+          <p class="section-label" style="margin-bottom:0.8rem">Detalhe da Arquitetura</p>
+          <div class="arch-layers">
+            <div class="arch-layer">
+              <span class="arch-layer-num">Input</span>
+              <span class="arch-layer-name">224 × 224 × 3 px</span>
+              <span class="arch-layer-note">imagem bruta RGB</span>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">↓</div>
+            <div class="arch-layer">
+              <span class="arch-layer-num">Rescaling</span>
+              <span class="arch-layer-name">÷ 127.5 − 1</span>
+              <span class="arch-layer-note">normaliza para [−1, 1] (padrão MobileNet)</span>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">↓</div>
+            <div class="arch-layer arch-highlight">
+              <span class="arch-layer-num">MobileNetV2</span>
+              <span class="arch-layer-name">Base pré-treinada (ImageNet) — congelada</span>
+              <span class="arch-layer-note">~2,2M parâmetros não treináveis</span>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">↓</div>
+            <div class="arch-layer">
+              <span class="arch-layer-num">GlobalAvgPool</span>
+              <span class="arch-layer-name">GlobalAveragePooling2D</span>
+              <span class="arch-layer-note">achata o feature map</span>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">↓</div>
+            <div class="arch-layer">
+              <span class="arch-layer-num">Dropout</span>
+              <span class="arch-layer-name">rate = 0.2</span>
+              <span class="arch-layer-note">regularização</span>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">↓</div>
+            <div class="arch-layer">
+              <span class="arch-layer-num">Dense</span>
+              <span class="arch-layer-name">6 neurônios · softmax</span>
+              <span class="arch-layer-note">saída: probabilidade de cada classe</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ SECTION 3 — Categorias ══════════════ -->
+    <section class="section" id="categorias">
+      <div class="section-inner">
+        <p class="section-label reveal">Dataset</p>
+        <h2 class="section-title reveal" style="--d:0.05s">Categorias Reconhecidas</h2>
+        <p class="section-desc reveal" style="--d:0.1s">
+          Seis classes presentes nos dois datasets mesclados, com dicas de descarte correto para cada uma.
+        </p>
+
+        <div class="cat-grid">
+          <div class="cat-card glass-card reveal" style="--d:0.03s; --accent:#00c8ff">
+            <div class="cat-icon">🧴</div>
+            <div class="cat-name">Plástico</div>
+            <div class="cat-en">plastic</div>
+            <p class="cat-tip">Lave antes de reciclar. Remova tampas quando possível.</p>
+          </div>
+          <div class="cat-card glass-card reveal" style="--d:0.07s; --accent:#a78bfa">
+            <div class="cat-icon">🫙</div>
+            <div class="cat-name">Vidro</div>
+            <div class="cat-en">glass</div>
+            <p class="cat-tip">Separe por cor. Nunca misture com cerâmica ou espelhos.</p>
+          </div>
+          <div class="cat-card glass-card reveal" style="--d:0.11s; --accent:#fb923c">
+            <div class="cat-icon">🥫</div>
+            <div class="cat-name">Metal</div>
+            <div class="cat-en">metal</div>
+            <p class="cat-tip">Amasse as latas. O alumínio é infinitamente reciclável!</p>
+          </div>
+          <div class="cat-card glass-card reveal" style="--d:0.15s; --accent:#34d399">
+            <div class="cat-icon">📄</div>
+            <div class="cat-name">Papel</div>
+            <div class="cat-en">paper</div>
+            <p class="cat-tip">Mantenha seco e limpo. Papel picado não deve ser misturado.</p>
+          </div>
+          <div class="cat-card glass-card reveal" style="--d:0.19s; --accent:#fbbf24">
+            <div class="cat-icon">📦</div>
+            <div class="cat-name">Papelão</div>
+            <div class="cat-en">cardboard</div>
+            <p class="cat-tip">Desmonte as caixas. Remova fitas adesivas e plásticos.</p>
+          </div>
+          <div class="cat-card glass-card reveal" style="--d:0.23s; --accent:#f87171">
+            <div class="cat-icon">🗑️</div>
+            <div class="cat-name">Lixo Geral</div>
+            <div class="cat-en">trash</div>
+            <p class="cat-tip">Não reciclável. Tente reduzir o uso desta categoria!</p>
+          </div>
+        </div>
+
+        <!-- Dataset comparison -->
+        <div class="dataset-compare glass-card reveal" style="--d:0.28s; margin-top:2rem;">
+          <p class="section-label" style="margin-bottom:1rem">Fontes do Super Dataset</p>
+          <div class="ds-cols">
+            <div class="ds-col">
+              <div class="ds-badge ds-badge-cyan">Dataset 1</div>
+              <div class="ds-name">TrashNet</div>
+              <div class="ds-desc">Imagens de estúdio com fundo branco — controle e limpeza ideais para classificação base.</div>
+            </div>
+            <div class="ds-plus" aria-hidden="true">+</div>
+            <div class="ds-col">
+              <div class="ds-badge ds-badge-violet">Dataset 2</div>
+              <div class="ds-name">Garbage Classification (Real World)</div>
+              <div class="ds-desc">Fotos com fundos reais (mãos, rua, grama) — aumenta a robustez em cenários do mundo real.</div>
+            </div>
+            <div class="ds-equals" aria-hidden="true">=</div>
+            <div class="ds-col ds-result">
+              <div class="ds-badge ds-badge-green">Resultado</div>
+              <div class="ds-name">Super Dataset</div>
+              <div class="ds-desc">Mesclagem automática via KaggleHub — prefixo <code>tn_</code> e <code>rw_</code> para evitar colisões de nomes.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ SECTION 4 — Métricas ══════════════ -->
+    <section class="section" id="metricas">
+      <div class="section-inner">
+        <p class="section-label reveal">Resultados</p>
+        <h2 class="section-title reveal" style="--d:0.05s">Métricas do Modelo</h2>
+
+        <div class="metrics-grid">
+          <div class="metric-big glass-card reveal" style="--d:0.04s">
+            <div class="metric-big-value gradient-text">MobileNetV2</div>
+            <div class="metric-big-label">Arquitetura Base</div>
+            <p class="metric-big-note">Transfer Learning a partir de pesos ImageNet. Base congelada durante o treino.</p>
+          </div>
+          <div class="metric-big glass-card reveal" style="--d:0.09s">
+            <div class="metric-big-value gradient-text">2 fontes</div>
+            <div class="metric-big-label">Super Dataset</div>
+            <p class="metric-big-note">TrashNet + Garbage Real World (Kaggle), mesclados em 6 classes com shuffle e split 80/20.</p>
+          </div>
+          <div class="metric-big glass-card reveal" style="--d:0.14s">
+            <div class="metric-big-value gradient-text">10</div>
+            <div class="metric-big-label">Épocas de Treino</div>
+            <p class="metric-big-note">Menos épocas que uma CNN do zero — Transfer Learning converge mais rápido e com menor risco de overfitting.</p>
+          </div>
+          <div class="metric-big glass-card reveal" style="--d:0.19s">
+            <div class="metric-big-value gradient-text">~43 MB</div>
+            <div class="metric-big-label">Tamanho do Modelo TF.js</div>
+            <p class="metric-big-note">Distribuído em shards para carregamento progressivo no browser via TF.js 4.20.</p>
+          </div>
+        </div>
+
+        <!-- Training config block -->
+        <div class="train-config glass-card reveal" style="--d:0.24s; margin-top:1.5rem;">
+          <p class="section-label" style="margin-bottom:1rem">Configuração de Treinamento</p>
+          <div class="config-grid">
+            <div class="config-item"><span class="cfg-key">Batch Size</span><span class="cfg-val">32</span></div>
+            <div class="config-item"><span class="cfg-key">Input Shape</span><span class="cfg-val">224 × 224 × 3</span></div>
+            <div class="config-item"><span class="cfg-key">Optimizer</span><span class="cfg-val">Adam (lr=0.001)</span></div>
+            <div class="config-item"><span class="cfg-key">Loss</span><span class="cfg-val">Sparse Categorical Crossentropy</span></div>
+            <div class="config-item"><span class="cfg-key">Augmentation</span><span class="cfg-val">Flip H+V · Rotate 20% · Zoom 20%</span></div>
+            <div class="config-item"><span class="cfg-key">Ambiente</span><span class="cfg-val">Google Colab (GPU)</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ SECTION 5 — Tecnologias ══════════════ -->
+    <section class="section" id="tecnologias">
+      <div class="section-inner">
+        <p class="section-label reveal">Stack</p>
+        <h2 class="section-title reveal" style="--d:0.05s">Tecnologias Utilizadas</h2>
+
+        <div class="tech-grid">
+          <div class="tech-item glass-card reveal" style="--d:0.04s">
+            <div class="tech-logo">🧠</div>
+            <div class="tech-name">TF-Keras + MobileNetV2</div>
+            <div class="tech-desc">Transfer Learning com base pré-treinada ImageNet. Camadas Conv congeladas, Dense treinável.</div>
+          </div>
+          <div class="tech-item glass-card reveal" style="--d:0.08s">
+            <div class="tech-logo">⚡</div>
+            <div class="tech-name">TensorFlow.js 4.20</div>
+            <div class="tech-desc">Inferência no browser via WebGL — sem servidor necessário.</div>
+          </div>
+          <div class="tech-item glass-card reveal" style="--d:0.12s">
+            <div class="tech-logo">📓</div>
+            <div class="tech-name">Google Colab</div>
+            <div class="tech-desc">Ambiente de treino com GPU gratuita. Download automático via KaggleHub.</div>
+          </div>
+          <div class="tech-item glass-card reveal" style="--d:0.16s">
+            <div class="tech-logo">🗂️</div>
+            <div class="tech-name">KaggleHub</div>
+            <div class="tech-desc">Download automático dos dois datasets e mesclagem em <em>super dataset</em> único.</div>
+          </div>
+          <div class="tech-item glass-card reveal" style="--d:0.20s">
+            <div class="tech-logo">🌐</div>
+            <div class="tech-name">HTML / CSS / JS</div>
+            <div class="tech-desc">Site 100% estático hospedado no GitHub Pages. Zero frameworks front-end.</div>
+          </div>
+          <div class="tech-item glass-card reveal" style="--d:0.24s">
+            <div class="tech-logo">📷</div>
+            <div class="tech-name">MediaDevices API</div>
+            <div class="tech-desc">Acesso à câmera do dispositivo via API nativa do browser.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ SECTION 6 — CTA Final ══════════════ -->
+    <section class="section cta-section" id="demo">
+      <div class="section-inner cta-inner">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <div class="cta-emoji reveal">🤖</div>
+        <h2 class="section-title reveal" style="--d:0.06s">Pronto para testar?</h2>
+        <p class="section-desc reveal" style="--d:0.12s">
+          Abra a demo ao vivo e aponte qualquer resíduo para a câmera — ou faça upload de uma imagem.
+          O modelo MobileNetV2 classifica em tempo real, sem enviar nada para um servidor.
+        </p>
+        <div class="reveal" style="--d:0.18s">
+          <a href="../webapp/index.html" class="btn-primary" id="cta-test-btn" style="font-size:1.1rem; padding:1rem 2.5rem;">
+            🚀 Testar o Modelo agora
+          </a>
+        </div>
+        <a href="../index.html" class="btn-secondary reveal" style="--d:0.24s; margin-top:1rem;">⬅ Voltar ao início</a>
+      </div>
+    </section>
+
+    <footer class="pres-footer">
+      ReciclaBot · MobileNetV2 + Transfer Learning · TrashNet + Real World · TensorFlow.js · 2025
+    </footer>
+  </div><!-- .page-wrap -->
+
+  <script src="app.js"></script>
+</body>
+</html>

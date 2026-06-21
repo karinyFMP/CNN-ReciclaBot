@@ -1,0 +1,22 @@
+# ── Python cache (apenas se o notebook for rodado localmente) ──
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Sistema operacional ──
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor ──
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Python virtual env (legado Streamlit, não mais usado) ──
+.venv/
+
+# NOTA: modelo_tfjs/ NÃO está no .gitignore.
+# Os ~43MB de shards são necessários para o GitHub Pages servir a demo.
