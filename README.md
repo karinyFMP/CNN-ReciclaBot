@@ -21,7 +21,32 @@ O **ReciclaBot** utiliza **Transfer Learning com MobileNetV2** treinado em um *s
    - **🎬 Ver Apresentação** — slides sobre o projeto, arquitetura MobileNetV2, pipeline, métricas e tecnologias.
    - **🤖 Testar o Modelo** — demo ao vivo com câmera ou upload de imagem.
 3. Na demo, clique em **Ativar câmera** ou faça upload de uma imagem de resíduo.
+---
 
+## 💻 Como executar localmente
+
+Como o projeto é uma aplicação web estática (HTML, CSS e JavaScript), você não precisa instalar dependências pesadas. No entanto, o navegador bloqueia o carregamento de arquivos locais (como os arquivos do modelo `.bin` e `.json`) por questões de segurança (CORS) se você simplesmente der dois cliques no arquivo `index.html`.
+
+Para rodar o projeto na sua máquina, use um servidor web local simples:
+
+### Opção 1: Usando Python (Recomendado)
+Abra o terminal na pasta do projeto e execute:
+```bash
+python -m http.server 8000
+```
+Em seguida, acesse **[http://localhost:8000](http://localhost:8000)** no seu navegador.
+
+### Opção 2: Usando Node.js
+Se você tiver o Node.js instalado, abra o terminal na pasta do projeto e execute:
+```bash
+npx serve .
+```
+
+### Opção 3: Extensão "Live Server" no VS Code
+1. Abra a pasta do projeto no **Visual Studio Code**.
+2. Instale a extensão **Live Server**.
+3. Clique com o botão direito no arquivo `index.html` e selecione **"Open with Live Server"**.
+   
 ---
 
 ## 🏷️ Categorias Reconhecidas
