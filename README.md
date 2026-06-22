@@ -4,7 +4,7 @@
 [![GitHub Pages](https://img.shields.io/badge/Demo-GitHub%20Pages-blue?logo=github)](https://karinyFMP.github.io/CNN-ReciclaBot/)
 
 > **Demo ao vivo** — sem instalar nada, basta abrir o link:
-> **[karinyFMP.github.io/CNN-ReciclaBot](https://karinyFMP.github.io/CNN-ReciclaBot/)**
+> **[https://karinyFMP.github.io/CNN-ReciclaBot/](https://karinyfmp.github.io/CNN-ReciclaBot/)**
 
 ---
 
