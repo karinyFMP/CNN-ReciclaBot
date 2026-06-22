@@ -7,6 +7,8 @@
 > **[https://karinyFMP.github.io/CNN-ReciclaBot/](https://karinyfmp.github.io/CNN-ReciclaBot/)**
 
 ---
+Integrantes: Gabriel Alves e Kariny
+---
 
 ## O que é este projeto?
 
