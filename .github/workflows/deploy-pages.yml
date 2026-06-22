@@ -2,9 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Ou "master", dependendo do nome da sua branch principal
+    branches: ["main"]
 
-# Permissões necessárias para publicar no GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -26,11 +25,13 @@ jobs:
         
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v4
-        
+        with:
+          enablement: true # Fix: Automatically enables Pages for the repository
+          
       - name: Fazer upload dos arquivos estáticos
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # Aqui ele pega todos os arquivos (index, webapp, apresentacao, modelo_tfjs)
+          path: './webapp' # Improvement: Only uploads the necessary web frontend files
           
       - name: Publicar no GitHub Pages
         id: deployment
